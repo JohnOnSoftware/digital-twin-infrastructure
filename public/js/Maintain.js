@@ -25,30 +25,6 @@ var _options = null;
 var _data = null;
 
 
-// TBD: move this to cloud database
-var Standard_Book = {
-  'Concrete': {
-    'Price': 146,
-    'Unit': 'm3',
-    'Code': '200420420847'
-  },
-  'Window' : {
-    'Price': 1224,
-    'Unit': 'nr',
-    'Code': '200420420857'
-  },
-  'Door' : {
-    'Price': 1836,
-    'Unit': 'nr',
-    'Code': '200420420867'
-  },
-  'Floor' : {
-    'Price': 80,
-    'Unit': 'm2',
-    'Code': '200420420877'
-  }
-} 
-
 const Budget_Table_Columns = [
   { title: "Type" },
   { title: "ID" },
@@ -56,14 +32,31 @@ const Budget_Table_Columns = [
   { title: "Description" }
 ];
 
+
 const Budget_Table_Datas = [
   ['Issue', '1234', 'Check the tunnul', 'Something is wrong'],
   ['Issue', '1234', 'Check the tunnul', 'Something is wrong'],
-  ['RFI', '1234', 'Check the tunnul', 'Something is wrong'],
+  ['RFI',   '1234', 'Check the tunnul', 'Something is wrong'],
   ['Issue', '1234', 'Check the tunnul', 'Something is wrong']
 ];
 
-var budgetTable = null;
+
+const Segment_Table_Columns = [
+  { title: "ID" },
+  { title: "Name" },
+  { title: "Type" },
+  { title: "Description" }
+];
+
+const Segment_Table_Datas = [
+  ['Issue', '1234', 'Check the tunnul', 'Something is wrong'],
+  ['Issue', '1234', 'Check the tunnul', 'Something is wrong'],
+  ['RFI',   '1234', 'Check the tunnul', 'Something is wrong'],
+  ['Issue', '1234', 'Check the tunnul', 'Something is wrong'],
+  ['Issue', '1234', 'Check the tunnul', 'Something is wrong'],
+  ['Issue', '1234', 'Check the tunnul', 'Something is wrong'],
+  ['Issue', '1234', 'Check the tunnul', 'Something is wrong']
+];
 
 ///////////////////////////////////////////////////////////////////////
 /// Generate random color
@@ -75,63 +68,27 @@ function random_rgba() {
 
 
 
-// class Chart{
+class Chart{
 
-//   constructor( tableId, columns, dataSet=[] ) {
-//     this.tableId = tableId;
-//     this.table = $(tableId).DataTable({
-//       pageLength: 10,
-//       data: dataSet,
-//       columns: columns
-//     });
-//   }
+  constructor( chartId ) {
+    this.series = new TimeSeries();
+    this.chart = new SmoothieChart();
+    this.chartId = chartId;
+    this.canvas = document.getElementById(chartId);
+    this.chart.addTimeSeries(this.series, { lineWidth: 2, strokeStyle: '#00ff00' });
+    this.chart.streamTo(this.canvas, 500);
 
-//   refreshTable( dataSet = null){
-//     if(this.table === null){
-//       console.log('The table is not initialized, please re-check');
-//       return;
-//     }
-//     const newData = dataSet ? dataSet : this.table.data();
-//     this.table.clear().rows.add(newData).draw();
-//   }
+  }
 
+  appendNewData( value ){
+    if(this.chart === null || this.series === null ){
+      console.log('The chart is not initialized, please re-check');
+      return;
+    }
 
-//   getBudgetList() {
-//     var budgetData = [];
-//     if (this.table !== null) {
-//       this.table.data().toArray().forEach((budgetItem) => {
-//         const item = {
-//           parentId: null,
-//           code: budgetItem[1],
-//           name: budgetItem[0] + ' Budget',
-//           quantity: budgetItem[2],
-//           description: "",
-//           unit: budgetItem[3],
-//           unitPrice: budgetItem[4].toString()
-//         }
-//         budgetData.push(item);
-//       })
-//     }
-//     return budgetData;
-//   }
-
-//   updateBudgetsTable( budgetCode, unitPrice, amount ){
-//     if (this.table !== null){
-//       let tableData = this.table.data();
-//       const budgetCount = tableData.length; 
-//       // reset the data
-//       for( let i = 0; i < budgetCount; ++i ){
-//         if(tableData[i][1] === budgetCode){
-//           tableData[i][4] = unitPrice;
-//           tableData[i][5] = amount;
-//           break;
-//         }
-//       }
-//     }
-//   }  
-// } 
-
-
+    this.series.append(new Date().getTime(), value, false );
+  }
+} 
 
 
 
@@ -195,39 +152,45 @@ class BudgetTable{
 }
 
 
+function animateRandomData( chart, interval=1000 ){
+  setInterval(function(){ 
+    const value = 40 + Math.round(60 * Math.random());
+  
+
+    chart.appendNewData( value );
+  
+
+   }, interval);
+
+
+}
 
 ///////////////////////////////////////////////////////////////////////
 /// Document ready event
 ///////////////////////////////////////////////////////////////////////
 $(document).ready(function () {
-
-  // initialize the charts and table
-  budgetTable = new BudgetTable('#myTaskList', Budget_Table_Columns );
-
-  budgetTable.refreshTable( Budget_Table_Datas );
-
-
-
-  // iot monitor
-  var  series = new TimeSeries();
-
   
-  var chartSettlement1 = new SmoothieChart();
-  var  canvas1 = document.getElementById('chart-settlement-1');
-  chartSettlement1.addTimeSeries(series, { lineWidth: 2, strokeStyle: '#00ff00' });
-  chartSettlement1.streamTo(canvas1, 500);
+  ////////////////////////////////////////////////////////////////////
+  // initialize the table
+  const myTaskTable = new BudgetTable('#myTaskList', Budget_Table_Columns );
+  myTaskTable.refreshTable( Budget_Table_Datas );
+
+  ////////////////////////////////////////////////////////////////////  
+  // weather report
+  weatherWidget();
 
 
-  var chartSettlement2 = new SmoothieChart();
-  var  canvas2 = document.getElementById('chart-settlement-2');
-  chartSettlement2.addTimeSeries(series, { lineWidth: 2, strokeStyle: '#00ff00' });
-  chartSettlement2.streamTo(canvas2, 500);
+  ////////////////////////////////////////////////////////////////////
+  // iot monitor
+  let chart1 = new Chart('chart-settlement-1');
+  let chart2 = new Chart('chart-settlement-2');
+  let chart3 = new Chart('chart-settlement-3');
+  let chart4 = new Chart('chart-settlement-4');
 
-  var chartSettlement3 = new SmoothieChart();
-  var  canvas3 = document.getElementById('chart-settlement-3');
-  chartSettlement3.addTimeSeries(series, { lineWidth: 2, strokeStyle: '#00ff00' });
-  chartSettlement3.streamTo(canvas3, 500);
-
+  animateRandomData( chart1 );
+  animateRandomData( chart2, 2000 );
+  animateRandomData( chart3, 5000 );
+  animateRandomData( chart4, 3000 );
 
 
   google.charts.load('current', { 'packages': ['gauge'] });
@@ -235,23 +198,10 @@ $(document).ready(function () {
 
 
 
-  // weather report
-  window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];
-  window.myWidgetParam.push({
-    id: 15,
-    cityid: '2031533',
-    appid: key,
-    units: 'metric',
-    containerid: 'openweathermap-widget',
-  });
-  weatherWidget();
-
-
-
+  ////////////////////////////////////////////////////////////////////
   // Segements management
-  
-  budgetTable = new BudgetTable('#segmentList', Budget_Table_Columns );
-  budgetTable.refreshTable( Budget_Table_Datas );
+  const segmentTable = new BudgetTable('#segmentList', Segment_Table_Columns );
+  segmentTable.refreshTable( Segment_Table_Datas );
 
 
 });
@@ -260,22 +210,17 @@ $(document).ready(function () {
 
 function setRamdonData() {
   
-  // set the temperature data 
-
   setInterval(function(){ 
-    const tension1 = Math.random(40, 80);
-    const tension2 = Math.random(40, 80);
-    const tension3 = Math.random(40, 80);
-    const tension4 = Math.random(40, 80);
+    const tension1 = 40 + Math.round(60 * Math.random());
+    const tension2 = 40 + Math.round(40 * Math.random());
+    const tension3 = 40 + Math.round(80 * Math.random());
+    const tension4 = 40 + Math.round(70 * Math.random());
   
     _data.setValue(0, 1, tension1 );
     _googleChart.draw(_data, _options);
-    // _temperatureTimeSeries.append(new Date().getTime(), );
   
-    // set the humidity data 
     _data.setValue(1, 1, tension2);
     _googleChart.draw(_data, _options);
-    // _humidityTimeSeries.append(new Date().getTime(), msgJson.humidity);
   
     _data.setValue(2, 1, tension3);
     _googleChart.draw(_data, _options);
@@ -285,8 +230,6 @@ function setRamdonData() {
   
 
    }, 1000);
-
-
 
 }
 
@@ -317,6 +260,17 @@ function drawChart() {
 
 
 function weatherWidget() {
+
+  window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];
+  window.myWidgetParam.push({
+    id: 15,
+    cityid: '2031533',
+    appid: key,
+    units: 'metric',
+    containerid: 'openweathermap-widget',
+  });
+
+
   var script = document.createElement('script');
   script.async = true;
   script.charset = "utf-8";
