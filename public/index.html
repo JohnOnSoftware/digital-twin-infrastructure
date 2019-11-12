@@ -228,6 +228,7 @@
 
                 <div class="row custom">
                   <div style="padding-left: 20px; padding-right: 20px; text-align: center; padding-top: 10px; ">
+
                     <h3>Segment Managment</h3>
                     <div class="clsInProgress" hidden>
                       <div style="text-align: center;">
@@ -241,6 +242,42 @@
                   </div>
                 </div>
 
+
+                <div class="row custom">
+                  <div style="padding-left: 20px; padding-right: 20px; text-align: left;; padding-top: 10px; ">
+
+                    <h3>New Issue</h3>
+                    <form id="issue-form">
+                      <div class="row mb-2" style="padding-top: 10px;">
+                        <label class="col-sm-2 col-form-label" for="issue-part">Part #</label>
+                        <div class="col-sm-10"><input class="form-control-plaintext" id="issue-part" type="text"
+                            readonly value="Select Element in Viewer"></div>
+                      </div>
+                      <div class="row mb-2" style="padding-top: 10px;">
+                        <label class="col-sm-2 col-form-label" for="issue-title">Type</label>
+                        <div class="col-sm-10"><select class="form-control form-control-sm" id="issue-title">
+                            <option>Minor</option>
+                            <option>Major</option>
+                            <option>Urgent</option>
+                            <option>Critical</option>
+                          </select></div>
+                      </div>
+                      <div class="row mb-2" style="padding-top: 10px;">
+                        <label class="col-sm-1 col-form-label" for="issue-position-x">X</label>
+                        <div class="col-sm-3"><input class="form-control" id="issue-position-x" type="text" value="0.0">
+                        </div>
+                        <label class="col-sm-1 col-form-label" for="issue-position-y">Y</label>
+                        <div class="col-sm-3"><input class="form-control" id="issue-position-y" type="text" value="0.0">
+                        </div>
+                        <label class="col-sm-1 col-form-label" for="issue-position-z">Z</label>
+                        <div class="col-sm-3"><input class="form-control" id="issue-position-z" type="text" value="0.0">
+                        </div>
+                      </div>
+                      <button class="btn btn-primary btn-block" type="submit">Submit</button>
+                    </form>
+                  </div>
+
+                </div>
               </div>
             </div>
 
