@@ -72,11 +72,15 @@ class Chart{
 
   constructor( chartId ) {
     this.series = new TimeSeries();
-    this.chart = new SmoothieChart();
+    this.chart = new SmoothieChart({
+      grid: { strokeStyle:'rgb(125, 0, 0)', fillStyle:'rgb(60, 0, 0)',
+              lineWidth: 1, millisPerLine: 250, verticalSections: 6, },
+      labels: { fillStyle:'rgb(60, 0, 0)' }
+    });
     this.chartId = chartId;
     this.canvas = document.getElementById(chartId);
-    this.chart.addTimeSeries(this.series, { lineWidth: 2, strokeStyle: '#00ff00' });
-    this.chart.streamTo(this.canvas, 500);
+    this.chart.addTimeSeries(this.series, { strokeStyle:'rgb(0, 255, 0)', fillStyle:'rgba(0, 255, 0, 0.4)', lineWidth:3 });
+    this.chart.streamTo(this.canvas, 1000);
 
   }
 
