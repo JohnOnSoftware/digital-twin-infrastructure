@@ -25,7 +25,7 @@ function launchViewer(urn, viewableId) {
   var options = {
     env: 'AutodeskProduction',
     getAccessToken: getForgeToken,
-    api: 'derivativeV2' + (atob(urn.replace('_', '/')).indexOf('emea') > -1 ? '_EU' : '') // handle BIM 360 US and EU regions
+    //api: 'derivativeV2' + (atob(urn.replace('_', '/')).indexOf('emea') > -1 ? '_EU' : '') // handle BIM 360 US and EU regions
   };
 
   Autodesk.Viewing.Initializer(options, () => {

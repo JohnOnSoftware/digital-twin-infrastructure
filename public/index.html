@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Autodesk Forge Tutorial</title>
+  <title>Highway Management - Autodesk Forge</title>
   <meta charset="utf-8" />
   <link rel="shortcut icon" href="https://github.com/Autodesk-Forge/learn.forge.viewhubmodels/raw/master/img/favicon.ico">
   <!-- Common packages: jQuery, Bootstrap, jsTree -->
@@ -39,43 +39,6 @@
             <img alt="Autodesk Forge" src="//developer.static.autodesk.com/images/logo_forge-2-line.png" height="20">
           </a>
         </li>
-      </ul>
-
-
-      <ul class="nav navbar-nav right col-lg-2">
-        <li>
-          <div style="float: right; margin-top: 15px;">
-            <span style="padding-right: 5px;" data-toggle="modal" data-target="#provisionAccountModal"
-              title="Enable my BIM 360 Account"><span class="glyphicon glyphicon-cog glyphiconTop mlink"> </span> Enable
-              my BIM 360 Account</span>
-          </div>
-        </li>
-      </ul>
-
-
-      <ul class="nav navbar-nav right col-lg-2">
-        <li>
-          <div style="float: right; margin-top: 15px;">
-            <span style="padding-right: 5px;" data-toggle="modal" data-target="#configBIM360Modal"
-              title="Select BIM360 Model"><span class="glyphicon glyphicon-cog glyphiconTop mlink"> </span> Select
-              BIM360 Model</span>
-          </div>
-        </li>
-      </ul>
-
-
-      <ul class="nav navbar-nav right col-lg-2">
-        <div style="padding-top: 10px; text-align: right;">
-          <li>
-            <button class="btn btn-sm btn-default" id="autodeskSigninButton" hidden>Sign In &nbsp&nbsp
-              <img
-                src="https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/autodesk_text.png"
-                height="20">
-            </button>
-            <!-- <button class="btn btn-sm btn-default" id="autodeskSignOutButton" hidden>Sign Out  &nbsp&nbsp<span id="userInfo" ></span>
-          </button> -->
-          </li>
-        </div>
       </ul>
     </div>
   </nav>
@@ -204,52 +167,5 @@
     </div>
   </div>
   </div>
-
-
-  <!--Select BIM360 Model  -->
-  <div class="modal fade" id="configBIM360Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title">Thanks for using this sample!</h4>
-        </div>
-        <div class="modal-body">
-          <div class="panel panel-default fill">
-            <div class="panel-heading" data-toggle="tooltip" style="padding: 0px;">
-              <span id="userInfo"></span>
-              <span id="refreshHubs" class="glyphicon glyphicon-refresh" style="cursor: pointer; display: none"
-                title="Refresh list of files"></span>
-              <span id="signOut" class="glyphicon glyphicon-log-out"
-                style="margin-top:5px;cursor: pointer; float: right; display: none" title="Sign out"> </span>
-            </div>
-            <div id="userHubs">
-              <div style="padding-top: 100px; text-align: center;">
-                <button class="btn btn-lg btn-default" id="autodeskSigninButton">
-                  <img
-                    src="https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/autodesk_text.png"
-                    height="20"> Sign in
-                </button>
-                <br />
-                <br />
-                <br /> You may also need to provision your<br /> BIM 360 Docs account for this app.<br />
-                <a href="https://forge.autodesk.com/blog/bim-360-docs-provisioning-forge-apps">Learn more</a>.
-              </div>
-            </div>
-          </div>
-
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" id="provisionAccountSave">Done</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </body>
-<iframe id="hiddenFrame" style="visibility: hidden; display: none" />
 </html>
