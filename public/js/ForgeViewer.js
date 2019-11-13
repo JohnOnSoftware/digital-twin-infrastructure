@@ -17,6 +17,7 @@
 /////////////////////////////////////////////////////////////////////
 
 var viewer;
+var presets_cams;
 
 // @urn the model to show
 // @viewablesId which viewables to show, applies to BIM 360 Plans folder
@@ -39,6 +40,9 @@ function launchViewer(urn, viewableId) {
     var viewables = (viewableId ? doc.getRoot().findByGuid(viewableId) : doc.getRoot().getDefaultGeometry());
     viewer.loadDocumentNode(doc, viewables).then(i => {
       // any additional action here?
+      presets_cams = viewer.model.getData().cameras;
+      initialzeSegmentBtns();
+      //alert('Viewer is initialized');
     });
   }
 

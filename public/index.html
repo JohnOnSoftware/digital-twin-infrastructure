@@ -11,30 +11,16 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/jstree.min.js"></script>
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/themes/default/style.min.css" />
+  
   <!-- Autodesk Forge Viewer files -->
   <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css" type="text/css">
   <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js"></script>
 
+  <!-- d3 chart -->
+  <script type="text/javascript" src="https://mbostock.github.com/d3/d3.js"></script>
+  <script type="text/javascript" src="js/gauge.js"></script>
   
-  <!-- <link  href="//vjs.zencdn.net/7.0/video-js.min.cs" rel="stylesheet">
-  <script src="//vjs.zencdn.net/7.0/video.min.js"></script> -->
-
-  <!-- weather -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,900" rel="stylesheet"> 
-  <link href="css/weather.css" rel="stylesheet" />
-  
-  
-
-
-  <!-- Table -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" type="text/css">
-  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-
-  <!-- Iot chart -->
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript" src="js/smoothie.js"></script>
-
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
 
   <!-- this project files -->
   <link href="css/main.css" rel="stylesheet" />
@@ -58,20 +44,22 @@
 
       <ul class="nav navbar-nav right col-lg-2">
         <li>
-            <div style="float: right; margin-top: 15px;">
-                <span style="padding-right: 5px;" data-toggle="modal" data-target="#provisionAccountModal" title="Enable my BIM 360 Account"><span
-                    class="glyphicon glyphicon-cog glyphiconTop mlink"> </span> Enable my BIM 360 Account</span>
-              </div>
+          <div style="float: right; margin-top: 15px;">
+            <span style="padding-right: 5px;" data-toggle="modal" data-target="#provisionAccountModal"
+              title="Enable my BIM 360 Account"><span class="glyphicon glyphicon-cog glyphiconTop mlink"> </span> Enable
+              my BIM 360 Account</span>
+          </div>
         </li>
       </ul>
 
 
       <ul class="nav navbar-nav right col-lg-2">
         <li>
-            <div style="float: right; margin-top: 15px;">
-                <span style="padding-right: 5px;" data-toggle="modal" data-target="#configBIM360Modal" title="Select BIM360 Model"><span
-                    class="glyphicon glyphicon-cog glyphiconTop mlink"> </span> Select BIM360 Model</span>
-              </div>
+          <div style="float: right; margin-top: 15px;">
+            <span style="padding-right: 5px;" data-toggle="modal" data-target="#configBIM360Modal"
+              title="Select BIM360 Model"><span class="glyphicon glyphicon-cog glyphiconTop mlink"> </span> Select
+              BIM360 Model</span>
+          </div>
         </li>
       </ul>
 
@@ -79,259 +67,192 @@
       <ul class="nav navbar-nav right col-lg-2">
         <div style="padding-top: 10px; text-align: right;">
           <li>
-          <button class="btn btn-sm btn-default" id="autodeskSigninButton" hidden>Sign In &nbsp&nbsp
-            <img src="https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/autodesk_text.png"
-                height="20"> 
-          </button>
-          <!-- <button class="btn btn-sm btn-default" id="autodeskSignOutButton" hidden>Sign Out  &nbsp&nbsp<span id="userInfo" ></span>
+            <button class="btn btn-sm btn-default" id="autodeskSigninButton" hidden>Sign In &nbsp&nbsp
+              <img
+                src="https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/autodesk_text.png"
+                height="20">
+            </button>
+            <!-- <button class="btn btn-sm btn-default" id="autodeskSignOutButton" hidden>Sign Out  &nbsp&nbsp<span id="userInfo" ></span>
           </button> -->
-        </li>
+          </li>
         </div>
-      </ul>    
+      </ul>
     </div>
   </nav>
   <!-- End of navbar -->
   <div class="container-fluid fill">
     <div class="row fill">
       <div class="col-sm-8 fill">
-        <div id="forgeViewer"></div>
+        <div class="row viewer">
+          <div id="forgeViewer"></div>
+        </div>
+        <div class="row">
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-success active">
+              <input type="radio" name="options" id="SegmentBtnGeneral" autocomplete="off" checked>General
+            </label>
+            <label class="btn btn-success">
+              <input type="radio" name="options" id="SegmentBtn0" autocomplete="off"> 0km
+            </label>
+            <label class="btn btn-success">
+              <input type="radio" name="options" id="SegmentBtn1" autocomplete="off"> 1km
+            </label>
+            <label class="btn btn-success">
+              <input type="radio" name="options" id="SegmentBtn2" autocomplete="off"> 2km
+            </label>
+            <label class="btn btn-success">
+              <input type="radio" name="options" id="SegmentBtn3" autocomplete="off"> 3km
+            </label>
+            <label class="btn btn-success">
+              <input type="radio" name="options" id="SegmentBtn4" autocomplete="off"> 4km
+            </label>
+            <label class="btn btn-success">
+              <input type="radio" name="options" id="SegmentBtn5" autocomplete="off"> 5km
+            </label>
+            <label class="btn btn-success">
+              <input type="radio" name="options" id="SegmentBtn6" autocomplete="off"> 6km
+            </label>
+            <label class="btn btn-success">
+              <input type="radio" name="options" id="SegmentBtn7" autocomplete="off"> 7km
+            </label>
+            <label class="btn btn-success">
+              <input type="radio" name="options" id="SegmentBtn8" autocomplete="off"> 8km
+            </label>
+            <label class="btn btn-success">
+              <input type="radio" name="options" id="SegmentBtn9" autocomplete="off"> 9km
+            </label>
+            <label class="btn btn-success">
+              <input type="radio" name="options" id="SegmentBtn10" autocomplete="off"> 10km
+            </label>
+            <label class="btn btn-success">
+              <input type="radio" name="options" id="SegmentBtn11" autocomplete="off"> 11km
+            </label>
+            <label class="btn btn-success">
+              <input type="radio" name="options" id="SegmentBtn12" autocomplete="off"> 12km
+            </label>
+            <label class="btn btn-success ">
+              <input type="radio" name="options" id="SegmentBtn13" autocomplete="off"> 13km
+            </label>
+            <label class="btn btn-success ">
+              <input type="radio" name="options" id="SegmentBtn14" autocomplete="off"> 14km
+            </label>
+            <label class="btn btn-success ">
+              <input type="radio" name="options" id="SegmentBtn15" autocomplete="off"> 15km
+            </label>
+            <label class="btn btn-success ">
+              <input type="radio" name="options" id="SegmentBtn16" autocomplete="off"> 16km
+            </label>
+            <label class="btn btn-success ">
+              <input type="radio" name="options" id="SegmentBtn17" autocomplete="off"> 17km
+            </label>
+          </div>
+        </div>
       </div>
       <div class="col-sm-4 fill">
         <div class="panel panel-default fill">
-
-
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#insight"><b>Insight</b></a>
-                </li>
-                <li><a data-toggle="tab" href="#monitor"><b>Monitor</b></a>
-                </li>
-                <li><a data-toggle="tab" href="#camera"><b>Camera</b></a>
-                </li>
-                <li><a data-toggle="tab" href="#segment"><b>Segments</b></a>
-                </li>
-            </ul>
-            <div class="tab-content">
-              <div id="insight" class="tab-pane fade in active fill">
-
-                <div class="row custom">
-                  <div style="padding-top: 10px;">
-                    <div id="openweathermap-widget" style="padding-left: 150px; margin: 0 auto 0;"></div>
-                  </div>
-                </div>
-
-                <div class="row custom">
-                  <div style="padding-left: 20px; padding-right: 20px; text-align: center; padding-top: 10px; ">
-                    <h3>My Issues</h3>
-                    <div class="clsInProgress" hidden>
-                      <div style="text-align: center;">
-                        <img src="res/Bars-1s-200px.svg" width="100" height="100">
-                      </div>
-                    </div>
-                    <div class="clsResult">
-                      <table id="myTaskList" class="display">
-                      </table>
-                    </div>
-                  </div>
-                </div>
-
+          <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#insight"><b>Insight</b></a>
+            </li>
+            <li><a data-toggle="tab" href="#monitor"><b>Monitor</b></a>
+            </li>
+            <li><a data-toggle="tab" href="#camera"><b>Camera</b></a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div id="insight" class="tab-pane fade in active fill">
+              <div class="row">
+                <h3 id='detail'>
+                  <center>Highway in southern Norway</center>
+                </h3>
+                <p id='description'> Norconsult delivers a multidisciplinary planning and design approach to clients in
+                  the Nordic region and beyond. Software and web development is handled by the daughter company
+                  Norconsult Informasjonssystemer (NoIS). Norwegian road authorities (Nye Veier) recently chose
+                  constructor AF Gruppen together with Norconsult to lead construction, design, and engineering on a new
+                  road linking Mandal and Kristiansand in southern Norway. This $500-million project will feature
+                  multiple tunnels and bridges throughout its 19-kilometer length, with one tunnel stretching more than
+                  2.5 kilometers. </p>
               </div>
-              <div id="monitor" class="tab-pane fade in fill">
-                <div style="padding-left: 5px; padding-right: 0px; text-align: center;">
-                  <div class="row custom">
-                    <h3>Settlement</h3>
-                    <div class="col-lg-3">
-                      <h5>#1</h5>
-                      <canvas id="chart-settlement-1" class="iot_monitor">
-                    </div>
-                    <div class="col-lg-3 " >
-                        <h5>#2</h5>
-                        <canvas id="chart-settlement-2" class="iot_monitor">
-                    </div>
-                    <div class="col-lg-3 ">
-                        <h5>#3</h5>
-                        <canvas id="chart-settlement-3" class="iot_monitor">
-                    </div>
-                    <div class="col-lg-3 ">
-                      <h5>#4</h5>
-                      <canvas id="chart-settlement-4" class="iot_monitor">
-                    </div>
-                </div>
-
-                  <div class="row custom">
-                    <h3>Morph</h3>
-                    <div class="col-lg-4">
-                          <div id="chartDiv" class="iot_monitor" style="padding-left: 40px;"></div>
-                    </div>
-                  </div>
-
-                  <div class="row custom" style="padding-top: 50px;">
-                    <h3>Landslide</h3>
-                    <div class="col-lg-4">
-                      <canvas id="chart-landslide-1" style="height: 80px; width: 100%;">
-                    </div>
-                    <div class="col-lg-4">
-                      <canvas id="chart-landslide-2" style="height: 80px; width: 100%;">
-                    </div>
-                    <div class="col-lg-4">
-                      <canvas id="chart-landslide-3" style="height: 80px; width: 100%;">
-                    </div>
-                  </div>
-
-
-                  
-                  <div class="row custom">
-                      <h3>Crack</h3>
-                      <div class="col-lg-4">
-                        <canvas id="chart-landslide-1" style="height: 80px; width: 100%;">
-                      </div>
-                      <div class="col-lg-4">
-                        <canvas id="chart-landslide-2" style="height: 80px; width: 100%;">
-                      </div>
-                      <div class="col-lg-4">
-                        <canvas id="chart-landslide-3" style="height: 80px; width: 100%;">
-                      </div>
-                    </div>
-  
-                  
-
-                </div>
+              <div class="row" id="cameraIssueRow" hidden>
+                <h3 id='cameraIssueText'>
+                  <center><b> Traffic Monitor </b></center>
+                </h3>
               </div>
-              <div id="camera" class="tab-pane fade in fill">
-                <div style="padding-left: 20px; padding-right: 20px; text-align: center;">
-                  <div class="row ">
-                    <div class="col-lg-4">
-                      <h5>#1</h5>
-                      <video src="res/test.mp4" width="100%" height="100%">
-                      </video>
-                    </div>
-                    <div class="col-lg-4">
-                      <h5>#2</h5>
-                      <video src="res/test.mp4" width="100%" height="100%">
-                      </video>
-                    </div>
-                    <div class="col-lg-4">
-                      <h5>#3</h5>
-                      <video src="res/test.mp4" width="100%" height="100%">
-                      </video>
-                    </div>
-
-                  </div>
-                </div>
+              <div class="row" id='slopeIssueRow' hidden>
+                <h3 id='slopeIssueText'>
+                  <center><b> Slope Monitor </b></center>
+                </h3>
               </div>
-              <div id="environment" class="tab-pane fade in fill">
-                <div style="padding-left: 20px; padding-right: 20px; text-align: center;">
-                </div>
-
-
+              <div class="row" id="temperatureIssueRow" hidden>
+                <h3 id='temperatureIssueText'>
+                  <center><b> Temperature Monitor</b></center>
+                </h3>
               </div>
-              <div id="segment" class="tab-pane fade in fill">
-
+            </div>
+            <div id="monitor" class="tab-pane fade in fill">
+              <div style="padding-left: 5px; padding-right: 0px; text-align: center;">
                 <div class="row custom">
-                  <div style="padding-left: 20px; padding-right: 20px; text-align: center; padding-top: 10px; ">
-
-                    <h3>Segment Managment</h3>
-                    <div class="clsInProgress" hidden>
-                      <div style="text-align: center;">
-                        <img src="res/Bars-1s-200px.svg" width="100" height="100">
-                      </div>
-                    </div>
-                    <div class="clsResult">
-                      <table id="segmentList" class="display">
-                      </table>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="row custom">
-                  <div style="padding-left: 20px; padding-right: 20px; text-align: left;; padding-top: 10px; ">
-
-                    <h3>New Issue</h3>
-                    <form id="issue-form">
-                      <div class="row mb-2" style="padding-top: 10px;">
-                        <label class="col-sm-2 col-form-label" for="issue-part">Part #</label>
-                        <div class="col-sm-10"><input class="form-control-plaintext" id="issue-part" type="text"
-                            readonly value="Select Element in Viewer"></div>
-                      </div>
-                      <div class="row mb-2" style="padding-top: 10px;">
-                        <label class="col-sm-2 col-form-label" for="issue-title">Type</label>
-                        <div class="col-sm-10"><select class="form-control form-control-sm" id="issue-title">
-                            <option>Minor</option>
-                            <option>Major</option>
-                            <option>Urgent</option>
-                            <option>Critical</option>
-                          </select></div>
-                      </div>
-                      <div class="row mb-2" style="padding-top: 10px;">
-                        <label class="col-sm-1 col-form-label" for="issue-position-x">X</label>
-                        <div class="col-sm-3"><input class="form-control" id="issue-position-x" type="text" value="0.0">
-                        </div>
-                        <label class="col-sm-1 col-form-label" for="issue-position-y">Y</label>
-                        <div class="col-sm-3"><input class="form-control" id="issue-position-y" type="text" value="0.0">
-                        </div>
-                        <label class="col-sm-1 col-form-label" for="issue-position-z">Z</label>
-                        <div class="col-sm-3"><input class="form-control" id="issue-position-z" type="text" value="0.0">
-                        </div>
-                      </div>
-                      <button class="btn btn-primary btn-block" type="submit">Submit</button>
-                    </form>
-                  </div>
-
+                  <h3>Morph</h3>
+                  <canvas id="chartDiv">
                 </div>
               </div>
             </div>
-
-
+          </div>
+          <div id="camera" class="tab-pane fade in fill">
+            <div style="padding-left: 20px; padding-right: 20px; text-align: center;">
+              <div class="row ">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-
     </div>
+  </div>
   </div>
 
 
+  <!--Select BIM360 Model  -->
+  <div class="modal fade" id="configBIM360Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Thanks for using this sample!</h4>
+        </div>
+        <div class="modal-body">
+          <div class="panel panel-default fill">
+            <div class="panel-heading" data-toggle="tooltip" style="padding: 0px;">
+              <span id="userInfo"></span>
+              <span id="refreshHubs" class="glyphicon glyphicon-refresh" style="cursor: pointer; display: none"
+                title="Refresh list of files"></span>
+              <span id="signOut" class="glyphicon glyphicon-log-out"
+                style="margin-top:5px;cursor: pointer; float: right; display: none" title="Sign out"> </span>
+            </div>
+            <div id="userHubs">
+              <div style="padding-top: 100px; text-align: center;">
+                <button class="btn btn-lg btn-default" id="autodeskSigninButton">
+                  <img
+                    src="https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/autodesk_text.png"
+                    height="20"> Sign in
+                </button>
+                <br />
+                <br />
+                <br /> You may also need to provision your<br /> BIM 360 Docs account for this app.<br />
+                <a href="https://forge.autodesk.com/blog/bim-360-docs-provisioning-forge-apps">Learn more</a>.
+              </div>
+            </div>
+          </div>
 
 
-    <!--Select BIM360 Model  -->
-    <div class="modal fade" id="configBIM360Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <h4 class="modal-title">Thanks for using this sample!</h4>
-          </div>
-          <div class="modal-body">
-              <div class="panel panel-default fill">
-                  <div class="panel-heading" data-toggle="tooltip" style="padding: 0px;">
-                    <span id="userInfo"></span>
-                    <span id="refreshHubs" class="glyphicon glyphicon-refresh" style="cursor: pointer; display: none" title="Refresh list of files"></span>
-                    <span id="signOut" class="glyphicon glyphicon-log-out" style="margin-top:5px;cursor: pointer; float: right; display: none" title="Sign out"> </span>
-                  </div>
-                  <div id="userHubs">
-                    <div style="padding-top: 100px; text-align: center;">
-                      <button class="btn btn-lg btn-default" id="autodeskSigninButton">
-                        <img src="https://github.com/Autodesk-Forge/bim360appstore-data.management-nodejs-transfer.storage/raw/master/www/img/autodesk_text.png"
-                          height="20"> Sign in
-                      </button>
-                      <br/>
-                      <br/>
-                      <br/> You may also need to provision your<br/> BIM 360 Docs account for this app.<br/>
-                      <a href="https://forge.autodesk.com/blog/bim-360-docs-provisioning-forge-apps">Learn more</a>.
-                    </div>
-                  </div>
-                </div>
-        
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary" id="provisionAccountSave">Done</button>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="provisionAccountSave">Done</button>
         </div>
       </div>
     </div>
+  </div>
 
 </body>
 <iframe id="hiddenFrame" style="visibility: hidden; display: none" />
