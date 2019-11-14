@@ -23,11 +23,31 @@ var presets_cams;
 // @urn the model to show
 // @viewablesId which viewables to show, applies to BIM 360 Plans folder
 function launchViewer(urn, viewableId) {
+
+  /*
+  OTG
+  var options = {
+    useADP: false,
+    env: "FluentProduction",
+    api: 'fluent',
+    getAccessToken: getForgeToken,
+    isAEC: true,
+    applyRefPoint: true,
+    globalOffset: { x: 0, y: 0, z: 0 }
+    //useCredentials: true,
+  };
+
+  if (location.hash=="#svf") {
+    options.env = "AutodeskProduction";
+    options.api = "";   
+  }
+  */
   var options = {
     env: 'AutodeskProduction',
     getAccessToken: getForgeToken,
     //api: 'derivativeV2' + (atob(urn.replace('_', '/')).indexOf('emea') > -1 ? '_EU' : '') // handle BIM 360 US and EU regions
   };
+
 
   Autodesk.Viewing.Initializer(options, () => {
     viewer = new Autodesk.Viewing.GuiViewer3D(document.getElementById("forgeViewer"));

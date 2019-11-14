@@ -22,10 +22,9 @@ $(document).ready(function () {
 
 function goToSegment(segmentNo) {
     if (!viewer) return;// model still loading...
-    viewer.utilities.goHome();
-    setTimeout(function () {
-        viewer.impl.setViewFromCamera(presets_cams[SegmentInfoList[segmentNo].Viewpoint], false);
-    }, 50);
+    viewer.autocam.shotParams.destinationPercent = 3;
+    viewer.autocam.shotParams.duration = 3;
+    viewer.impl.setViewFromCamera(presets_cams[SegmentInfoList[segmentNo].Viewpoint], false);
 
     // clear issues
     viewer.clearThemingColors();
