@@ -5,17 +5,17 @@ html, body {
 
 #forgeViewer {
     width: 100%;
-    height: calc(100vh - 130px);
+    height: calc(100vh - 150px);
 }
 
 #forgeViewer2d {
     width: 100%;
-    height: calc(100vh - 130px);
+    height: calc(100vh - 150px);
 }
 
 .highwaymap {
     width: 100%;
-    height: 80px;
+    height: 100px;
     white-space: nowrap;
     position: relative;
     overflow-x: scroll;
