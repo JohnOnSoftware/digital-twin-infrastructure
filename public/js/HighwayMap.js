@@ -33,7 +33,9 @@ function goToSegment(segmentNo) {
     // clear documents
     var row = $(".row").children();
     if (row.length > 1) row[1].remove();
-    $(row[0]).removeClass('col-sm-8').addClass('col-sm-12 transition-width')
+    $(row[0]).removeClass('col-sm-8').addClass('col-sm-12 transition-width');
+
+    setTimeout(1000, function () { viewer.resize(); });
 
     if (SegmentInfoList[segmentNo].Issues !== undefined) showIssues(segmentNo);
     if (SegmentInfoList[segmentNo].Documents !== undefined) showDocuments(segmentNo);
