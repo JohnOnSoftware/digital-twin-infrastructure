@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Highway Management - Autodesk Forge</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon"
+        href="https://github.com/Autodesk-Forge/learn.forge.viewhubmodels/raw/master/img/favicon.ico">
+    <!-- Common packages: jQuery, Bootstrap, jsTree -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- Autodesk Forge Viewer files -->
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css"
+        type="text/css">
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js"></script>
+
+    <!-- this project files -->
+    <link href="/css/main1.css" rel="stylesheet" />
+    <script src="/js/ForgeViewer.js"></script>
+    <script src="/js/Maintain.js"></script>
+    <script src="/js/HighwayMap.js"></script>
+</head>
+
+<body>
+    <!-- Fixed navbar by Bootstrap: https://getbootstrap.com/examples/navbar-fixed-top/ -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav left col-lg-6">
+                <li>
+                    <a href="http://forge.autodesk.com" target="_blank">
+                        <img alt="Autodesk Forge" src="//developer.static.autodesk.com/images/logo_forge-2-line.png"
+                            height="20">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- End of navbar -->
+    <div class="container-fluid" style="padding-top: 50px;">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="forgeViewer"></div>
+            </div>
+        </div>
+    </div>
+    <div class="highwaymap" id="highwaymap">
+    </div>
+</body>
+
+</html>

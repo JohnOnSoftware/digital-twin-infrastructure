@@ -1,0 +1,140 @@
+html, body {
+    min-height: 100%;
+    height: 100%;
+}
+
+#forgeViewer {
+    width: 100%;
+    height: calc(100vh - 130px);
+}
+
+#forgeViewer2d {
+    width: 100%;
+    height: calc(100vh - 130px);
+}
+
+.highwaymap {
+    width: 100%;
+    height: 80px;
+    white-space: nowrap;
+    position: relative;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.segment {
+    text-align: center;
+    vertical-align: text-top;
+    width: 102px;
+    float: none;
+    height: 70px;
+    display: inline-block;
+    zoom: 1;
+    background-image: url("/img/roadsegment.png");
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    cursor: pointer;
+}
+
+div.segment:hover {
+    background-color: #e0e0e0;
+}
+
+.redAlert {
+    -webkit-animation: redAlert 1s infinite;
+    /* Safari 4+ */
+    -moz-animation: redAlert 1s infinite;
+    /* Fx 5+ */
+    -o-animation: redAlert 1s infinite;
+    /* Opera 12+ */
+    animation: redAlert 1s infinite;
+    /* IE 10+, Fx 29+ */
+}
+
+@-webkit-keyframes redAlert {
+    0%, 49% {
+        background-color: #e50000;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    50%, 100% {
+        background-color: #ffffff;
+    }
+}
+
+.yellowAlert {
+    -webkit-animation: yellowAlert 1s infinite;
+    /* Safari 4+ */
+    -moz-animation: yellowAlert 1s infinite;
+    /* Fx 5+ */
+    -o-animation: yellowAlert 1s infinite;
+    /* Opera 12+ */
+    animation: yellowAlert 1s infinite;
+    /* IE 10+, Fx 29+ */
+}
+
+@-webkit-keyframes yellowAlert {
+    0%, 49% {
+        background-color: #ffff00;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    50%, 100% {
+        background-color: #ffffff;
+    }
+}
+
+.update {
+    z-index: 1;
+}
+
+div.camera {
+    position: absolute;
+    padding: 0.5em;
+    color: #adb5bd;
+    background: #212529;
+    opacity: 0.9;
+    border: 1px solid #adb5bd;
+    border-radius: 0 15px 15px 15px;
+    height: 300px;
+    width: 310px;;
+}
+
+iframe {
+    height: 290px;
+    width: 300px;
+    overflow: auto;
+    border: 0px;
+}
+
+label.markup {
+    position: absolute;
+    padding: 0.5em;
+    color: #adb5bd;
+    background: #212529;
+    opacity: 0.9;
+    border: 1px solid #adb5bd;
+    border-radius: 0 15px 15px 15px;
+}
+
+label.markup:hover {
+    z-index: 2;
+}
+
+label.markup img.arrow {
+    position: absolute;
+    left: -10px;
+    top: -10px;
+}
+
+label.markup img.thumbnail {
+    border-radius: 10px;
+}
+
+.transition-width {
+    transition: width 1s ease-in-out;
+}
+
+.col-sm-12 {
+    padding: 0px;
+}

@@ -17,6 +17,7 @@
 /////////////////////////////////////////////////////////////////////
 
 var viewer;
+var viewer2d;
 var presets_cams;
 
 // @urn the model to show
@@ -29,7 +30,7 @@ function launchViewer(urn, viewableId) {
   };
 
   Autodesk.Viewing.Initializer(options, () => {
-    viewer = new Autodesk.Viewing.GuiViewer3D(document.getElementById('forgeViewer'));
+    viewer = new Autodesk.Viewing.GuiViewer3D(document.getElementById("forgeViewer"));
     viewer.start();
     var documentId = 'urn:' + urn;
     Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, onDocumentLoadFailure);
@@ -41,7 +42,7 @@ function launchViewer(urn, viewableId) {
     viewer.loadDocumentNode(doc, viewables).then(i => {
       // any additional action here?
       presets_cams = viewer.model.getData().cameras;
-      initialzeSegmentBtns();
+      if (initialzeSegmentBtns) initialzeSegmentBtns();
       //alert('Viewer is initialized');
     });
   }
@@ -57,4 +58,31 @@ function getForgeToken(callback) {
       callback(data.access_token, data.expires_in);
     });
   });
+}
+
+function launchViewer2d(urn, viewableId, div) {
+  var options = {
+    env: 'AutodeskProduction',
+    getAccessToken: getForgeToken,
+    //api: 'derivativeV2' + (atob(urn.replace('_', '/')).indexOf('emea') > -1 ? '_EU' : '') // handle BIM 360 US and EU regions
+  };
+
+  Autodesk.Viewing.Initializer(options, () => {
+    viewer2d = new Autodesk.Viewing.GuiViewer3D(document.getElementById(div));
+    viewer2d.start();
+    var documentId = 'urn:' + urn;
+    Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, onDocumentLoadFailure);
+  });
+
+  function onDocumentLoadSuccess(doc) {
+    // if a viewableId was specified, load that view, otherwise the default view
+    var viewables = (viewableId ? doc.getRoot().findByGuid(viewableId) : doc.getRoot().getDefaultGeometry());
+    viewer2d.loadDocumentNode(doc, viewables).then(i => {
+      // any additional action here?
+    });
+  }
+
+  function onDocumentLoadFailure(viewerErrorCode) {
+    console.error('onDocumentLoadFailure() - errorCode:' + viewerErrorCode);
+  }
 }
