@@ -41,13 +41,13 @@ div.segment:hover {
 }
 
 .redAlert {
-    -webkit-animation: redAlert 1s infinite;
+    -webkit-animation: redAlert 1000s infinite;
     /* Safari 4+ */
-    -moz-animation: redAlert 1s infinite;
+    -moz-animation: redAlert 1000s infinite;
     /* Fx 5+ */
-    -o-animation: redAlert 1s infinite;
+    -o-animation: redAlert 1000s infinite;
     /* Opera 12+ */
-    animation: redAlert 1s infinite;
+    animation: redAlert 1000s infinite;
     /* IE 10+, Fx 29+ */
 }
 
@@ -63,13 +63,13 @@ div.segment:hover {
 }
 
 .yellowAlert {
-    -webkit-animation: yellowAlert 1s infinite;
+    -webkit-animation: yellowAlert 1000s infinite;
     /* Safari 4+ */
-    -moz-animation: yellowAlert 1s infinite;
+    -moz-animation: yellowAlert 1000s infinite;
     /* Fx 5+ */
-    -o-animation: yellowAlert 1s infinite;
+    -o-animation: yellowAlert 1000s infinite;
     /* Opera 12+ */
-    animation: yellowAlert 1s infinite;
+    animation: yellowAlert 1000s infinite;
     /* IE 10+, Fx 29+ */
 }
 
