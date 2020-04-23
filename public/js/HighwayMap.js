@@ -22,7 +22,9 @@ $(document).ready(function () {
 
 function goToSegment(segmentNo) {
     if (!viewer) return;// model still loading...
-    viewer.impl.setViewFromCamera(presets_cams[SegmentInfoList[segmentNo].Viewpoint]);
+    viewer.autocam.shotParams.destinationPercent = 3;
+    viewer.autocam.shotParams.duration = 3;
+    viewer.impl.setViewFromCamera(presets_cams[SegmentInfoList[segmentNo].Viewpoint], false);
 
     // clear issues
     viewer.clearThemingColors();
@@ -33,11 +35,14 @@ function goToSegment(segmentNo) {
     // clear documents
     var row = $(".row").children();
     if (row.length > 1) row[1].remove();
-    $(row[0]).removeClass('col-sm-8').addClass('col-sm-12 transition-width')
+    $(row[0]).removeClass('col-sm-8').addClass('col-sm-12 transition-width');
+
+    setTimeout(function () { viewer.resize(); }, 1000);
 
     if (SegmentInfoList[segmentNo].Issues !== undefined) showIssues(segmentNo);
     if (SegmentInfoList[segmentNo].Documents !== undefined) showDocuments(segmentNo);
     if (SegmentInfoList[segmentNo].Camera !== undefined) showCamera(segmentNo);
+
 }
 
 function showCamera(segmentNo) {
