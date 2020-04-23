@@ -1,4 +1,4 @@
-# forge.tutorial.viewhubmodels - Nodejs
+# digital.twin.infrastructure
 
 [![Node.js](https://img.shields.io/badge/Node.js-8.0-blue.svg)](https://nodejs.org/)
 [![npm](https://img.shields.io/badge/npm-4.0-blue.svg)](https://www.npmjs.com/)
@@ -14,7 +14,7 @@
 
 # Description
 
-This sample is part of the [Learn Forge](http://learnforge.autodesk.io) tutorials.
+This sample is a demo for infrastructure.
 
 # Setup
 
@@ -92,4 +92,4 @@ This sample is licensed under the terms of the [MIT License](http://opensource.o
 
 ## Written by
 
-Petr Broz [@petrbroz](https://twitter.com/petrbroz), [Forge Partner Development](http://forge.autodesk.com)
+Augusto Goncalves， Zhong Wu, [Forge Partner Development](http://forge.autodesk.com)
