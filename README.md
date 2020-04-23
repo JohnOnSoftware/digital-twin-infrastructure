@@ -14,7 +14,16 @@
 
 # Description
 
-This sample is a demo for infrastructure.
+This sample is a demo for infrastructure. 
+
+
+# Thumbnail
+![thumbnail](/thumbnail.png)
+
+
+# Live Demo
+[http://forgehighway.herokuapp.com/v2/](http://forgehighway.herokuapp.com/v2/)
+
 
 # Setup
 
