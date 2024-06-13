@@ -24,7 +24,7 @@ function goToSegment(segmentNo) {
     if (!viewer) return;// model still loading...
     viewer.autocam.shotParams.destinationPercent = 3;
     viewer.autocam.shotParams.duration = 3;
-    viewer.impl.setViewFromCamera(presets_cams[SegmentInfoList[segmentNo].Viewpoint], false);
+    viewer.impl.setViewFromCamera(presets_cams[SegmentInfoList[segmentNo].Viewpoint-1], false);
 
     // clear issues
     viewer.clearThemingColors();

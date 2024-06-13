@@ -322,7 +322,7 @@ class LineChart {
 $(document).ready(function () {
 
 
-  launchViewer('dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6M3h4YWdmZ2s2aHhyb2F0YzVhdTJwM3JoY3VncnZiYnUtaW5mcmFpb3RzYW1wbGUvMy1wMF9pbm5zeW5zbW9kZWxsLUUzOUtNLm53ZA')
+  launchViewer('dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6M3h4YWdmZ2s2aHhyb2F0YzVhdTJwM3JoY3VncnZiYnUtaW5mcmFpb3RzYW1wbGUvaGlnaHdheS5ud2Q')
 
   // let lineChart1 = new LineChart('chartDiv')
   // lineChart1.startStreamData();

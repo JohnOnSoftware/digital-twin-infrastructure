@@ -18,7 +18,7 @@
 
 var viewer;
 var viewer2d;
-var presets_cams;
+var presets_cams = [];
 
 // @urn the model to show
 // @viewablesId which viewables to show, applies to BIM 360 Plans folder
@@ -43,7 +43,8 @@ function launchViewer(urn, viewableId) {
   }
   */
   var options = {
-    env: 'AutodeskProduction',
+    env: 'AutodeskProduction2',
+    api:'streamingV2',
     getAccessToken: getForgeToken,
     //api: 'derivativeV2' + (atob(urn.replace('_', '/')).indexOf('emea') > -1 ? '_EU' : '') // handle BIM 360 US and EU regions
   };
@@ -60,8 +61,19 @@ function launchViewer(urn, viewableId) {
     // if a viewableId was specified, load that view, otherwise the default view
     var viewables = (viewableId ? doc.getRoot().findByGuid(viewableId) : doc.getRoot().getDefaultGeometry());
     viewer.loadDocumentNode(doc, viewables).then(i => {
-      // any additional action here?
-      presets_cams = viewer.model.getData().cameras;
+      // The original viewer.model.getData().cameras does not include these pre-saved cameras due to 
+      // "Make Viewpoints Great Again" initiative, details https://autodesk.slack.com/archives/C0FL5BJF7/p1718032639044439?thread_ts=1505938820.000202&cid=C0FL5BJF7
+      let viewpoints = viewer.model.getData().viewpoints;
+      const gOffset = viewer.model.getData().globalOffset;
+      const gOffsetVector = new THREE.Vector3( gOffset.x, gOffset.y, gOffset.z);
+      for( let viewpoint of viewpoints ){
+        // the target, position and up are just simple object instead of THREE.Vector3, convert to THREE.Vector3 to avoid issues
+        let newCamera = viewpoint.camera;
+        newCamera.target = new THREE.Vector3(newCamera.target.x, newCamera.target.y, newCamera.target.z).sub(gOffsetVector); 
+        newCamera.position = new THREE.Vector3(newCamera.position.x, newCamera.position.y, newCamera.position.z ).sub(gOffsetVector); 
+        newCamera.up = new THREE.Vector3(newCamera.up.x, newCamera.up.y, newCamera.up.z); 
+        presets_cams.push(newCamera)
+      }
       if (initialzeSegmentBtns) initialzeSegmentBtns();
       //alert('Viewer is initialized');
     });
