@@ -94,7 +94,8 @@ function getForgeToken(callback) {
 
 function launchViewer2d(urn, viewableId, div) {
   var options = {
-    env: 'AutodeskProduction',
+    env: 'AutodeskProduction2',
+    api:'streamingV2',
     getAccessToken: getForgeToken,
     //api: 'derivativeV2' + (atob(urn.replace('_', '/')).indexOf('emea') > -1 ? '_EU' : '') // handle BIM 360 US and EU regions
   };
