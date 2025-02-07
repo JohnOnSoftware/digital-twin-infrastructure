@@ -22,7 +22,7 @@ This sample is a demo for infrastructure.
 
 
 # Live Demo
-[http://forgehighway.herokuapp.com/v2/](http://forgehighway.herokuapp.com/v2/)
+[https://highway.autodesk.io/](https://highway.autodesk.io/)
 
 
 # Setup
